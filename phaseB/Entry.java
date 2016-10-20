@@ -1,5 +1,5 @@
-/** Phase A <studentA EID><studentB EID>
- * Phase B <studentB EID><studentA EID>
+/** Phase A <jtk764><ces3723>
+ * Phase B <ces3723><jtk764>
  */
 
 package pMap.phaseB;
@@ -11,22 +11,38 @@ import java.util.Map;
  */
 
 public class Entry implements Map.Entry<Integer,String> {
+	private int key;
+	private String value;
 	
+	public Entry(Integer key, String value) {
+		this.key = key;
+		this.value = value;
+	}
 	@Override
 	public Integer getKey() {
-		// TODO Auto-generated method stub
-		return null;
+		return key;
 	}
 	@Override
 	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return value;
 	}
 	@Override
 	public String setValue(String value) {
-		// TODO Auto-generated method stub
-		return null;
+		this.value = value;
+		return value;
 	}
-
-
+	
+	@Override
+	public int hashCode() {
+		return key%1000;
+	}
+	
+	@Override
+	public boolean equals(Object so) {
+		Entry s = (Entry) so;
+		if(this.key == s.key) return true;
+		else return false;
+	}
+	
+	
 }

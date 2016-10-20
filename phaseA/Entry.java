@@ -1,5 +1,5 @@
-/** Phase A <studentA EID><studentB EID>
- * Phase B <studentB EID><studentA EID>
+/** Phase A <jtk764><ces3723>
+ * Phase B <ces3723><jtk764>
  */
 
 package pMap.phaseA;
@@ -21,6 +21,11 @@ public class Entry {
 	
 	public int getValue(){
 		return value;
+	}
+	
+	@Override
+	public String toString() {
+		return "( " + key + ", " + value + " )";
 	}
 }
 

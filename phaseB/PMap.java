@@ -1,9 +1,10 @@
-/** Phase A <studentA EID><studentB EID>
- * Phase B <studentB EID><studentA EID>
+/** Phase A <jtk764><ces3723>
+ * Phase B <ces3723><jtk764>
  */
 package pMap.phaseB;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,47 +15,50 @@ import java.util.Set;
  */
 
 public class PMap implements Map<Integer,String> {
-
+	
+	HashSet<pMap.phaseB.Entry> hs = new HashSet<pMap.phaseB.Entry>(1000); 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return hs.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return hs.isEmpty();
 	}
 
 	@Override
 	public boolean containsKey(Object key) {
-		// TODO Auto-generated method stub
-		return false;
+		return hs.contains(new pMap.phaseB.Entry((Integer) key, null));
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		// TODO Auto-generated method stub
+		for(pMap.phaseB.Entry i: hs) {
+			if (i.getValue().equals((String) value)) return true;
+		}
 		return false;
 	}
 
 	@Override
 	public String get(Object key) {
-		// TODO Auto-generated method stub
+		for(pMap.phaseB.Entry i : hs) {
+			if(i.getKey() == key) return i.getValue();
+		}
 		return null;
 	}
 
 	@Override
 	public String put(Integer key, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		hs.add(new pMap.phaseB.Entry(key, value));
+		return value;
 	}
 
 	@Override
 	public String remove(Object key) {
-		// TODO return value
-		return null;
+		String val = get(key);
+		hs.remove(new pMap.phaseB.Entry((Integer) key, null));
+		return val;
 	}
 
 	@Override
