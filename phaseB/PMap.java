@@ -3,6 +3,7 @@
  */
 package pMap.phaseB;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Set;
 
 public class PMap implements Map<Integer,String> {
 	
-	HashSet<pMap.phaseB.Entry> hs = new HashSet<pMap.phaseB.Entry>(1000); 
+	Set<pMap.phaseB.Entry> hs = new HashSet<pMap.phaseB.Entry>(); 
 	@Override
 	public int size() {
 		return hs.size();
@@ -43,13 +44,14 @@ public class PMap implements Map<Integer,String> {
 	@Override
 	public String get(Object key) {
 		for(pMap.phaseB.Entry i : hs) {
-			if(i.getKey() == key) return i.getValue();
+			if(i.getKey().equals((Integer) key)) return i.getValue();
 		}
 		return null;
 	}
 
 	@Override
 	public String put(Integer key, String value) {
+		remove(key);
 		hs.add(new pMap.phaseB.Entry(key, value));
 		return value;
 	}
@@ -63,32 +65,43 @@ public class PMap implements Map<Integer,String> {
 
 	@Override
 	public void putAll(Map<? extends Integer, ? extends String> m) {
-		// TODO Auto-generated method stub
+			for(java.util.Map.Entry<? extends Integer, ? extends String> e : m.entrySet()) {
+			put(e.getKey(), e.getValue());
+		}
 		
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		hs.clear();
 		
 	}
 
 	@Override
 	public Set<Integer> keySet() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Integer> s = new HashSet<Integer>();
+		for(pMap.phaseB.Entry e: hs) {
+			s.add(e.getKey());
+		}
+		return s;
 	}
 
 	@Override
 	public Collection<String> values() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> values = new ArrayList<String>();
+		for(pMap.phaseB.Entry e : hs) {
+			values.add(e.getValue());
+		}
+		return values;
 	}
 
 	@Override
 	public Set<Entry<Integer, String>> entrySet() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Entry<Integer, String>> s = new HashSet<Entry<Integer,String>>();
+		for(pMap.phaseB.Entry e : hs) {
+			s.add(e);
+		}
+		return s;
 	}
 
 	

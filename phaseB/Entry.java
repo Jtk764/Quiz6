@@ -34,7 +34,7 @@ public class Entry implements Map.Entry<Integer,String> {
 	
 	@Override
 	public int hashCode() {
-		return key%1000;
+		return Integer.hashCode(key);
 	}
 	
 	@Override
